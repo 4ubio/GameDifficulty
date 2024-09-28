@@ -22,7 +22,11 @@ struct ButtonView: View {
         VStack (spacing: 15) {
             Button(action: {
                 withAnimation(.easeIn(duration: 0.5)){
-                    indexArray.append(index)
+                    if (indexArray.last == index) {
+                        indexArray.append(0)
+                    } else {
+                        indexArray.append(index)
+                    }
                 }
             }) {
                 
