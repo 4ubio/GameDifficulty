@@ -9,15 +9,20 @@ import SwiftUI
 
 struct ButtonView: View {
     
+    @State var index: Int
+    @Binding var indexArray: [Int]
     @State var level: String
     @State var message: String
-    @State var selected: Bool
+    
+    var selected: Bool {
+        return (indexArray.last == index) ? true : false
+    }
     
     var body: some View {
         VStack (spacing: 15) {
             Button(action: {
                 withAnimation(.easeIn(duration: 0.5)){
-                    selected.toggle()
+                    indexArray.append(index)
                 }
             }) {
                 
@@ -50,8 +55,9 @@ struct ButtonView: View {
 
 #Preview {
     ButtonView(
+        index: 1,
+        indexArray: .constant([]),
         level: "Easy",
-        message: "Designed for players new to the game or genre.",
-        selected: false
+        message: "Designed for players new to the game or genre."
     )
 }
